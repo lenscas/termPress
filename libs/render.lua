@@ -15,9 +15,10 @@ return {
 		else
 			objects = list:new(shape)
 		end
+		return shape
 	end,
 	draw = function(self)
-		term.clear()
+		os.execute("clear")
 		if objects then
 			objects:forEach(
 				function(node)
@@ -30,8 +31,20 @@ return {
 	debug = function(self)
 		objects:forEach(
 			function(node)
-				print(node.val.color)
+				print(node.val.color or node.val.command)
 			end
 		)
+		objects:forEach(print)
+	end,
+	removeShape = function(self,obj)
+		if not objects then return end
+		objects = objects:removeCompare(
+			function(node)
+				return node.val == obj
+			end
+		)
+	end,
+	removeAll = function(self)
+		objects = nil
 	end
 }

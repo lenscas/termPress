@@ -51,7 +51,7 @@ function Node:insertCompare(fun,val,pref,lok)
 			self.next = node
 			return lok + 1,node
 		else
-			return self.next:insertCompare(fun,val,pref,lok+1)
+			return self.next:insertCompare(fun,val,self,lok+1)
 		end
 	end
 end
@@ -66,16 +66,19 @@ function Node:removeAt(at,pref)
 		return self.next and self.next:removeAt(at,self)
 	end
 end
-function Node:removeCompare(fun,all,pref)
+function Node:removeCompare(fun,all,pref,head)
 	all = all or false
 	if fun(self) then
-		local res = self:removeAt(nil,pref)
+		self:removeAt(nil,pref)
 		if not all then
-			return res
+			return head or self.next
 		end
 	end
+	if not head then
+		head = self
+	end
 	if self.next then
-		return self.next:removeCompare(fun,all,self)
+		return self.next:removeCompare(fun,all,self,head)
 	end
 end
 return Node
