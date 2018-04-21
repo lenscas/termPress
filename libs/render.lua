@@ -22,11 +22,23 @@ return {
 		if objects then
 			objects:forEach(
 				function(node)
-					node.val:render()
+					node.val:render(self)
 				end
 			)
 		end
 		io.flush()
+	end,
+	write = function(self,text)
+		if backgroundColor then
+			io.write(term.colors["on"..backgroundColor](text))
+		else
+			io.write(text)
+		end
+	end,
+	setBackgroundColor = function(self,color)
+		assert(term.colors["on"..color],color.." is not a valid background color")
+		backgroundColor = color
+		return true
 	end,
 	debug = function(self)
 		objects:forEach(

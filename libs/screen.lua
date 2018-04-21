@@ -1,3 +1,4 @@
+local debug = true
 local screens = {}
 local count = 1
 repeat
@@ -6,6 +7,9 @@ repeat
 			return dofile("./screens/screen"..count..".lua")
 		end
 	)
+	if debug and not succ then
+		print(screen)
+	end
 	if succ then
 		if not screen then
 			error("didn't return anything")
