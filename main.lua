@@ -1,10 +1,11 @@
-package.path  = package.path .. ";./libs/?.lua;./classes/?.lua;./classes/shapes/?.lua";
+package.path = package.path .. ";./libs/?.lua;./classes/?.lua;./classes/shapes/?.lua";
 local render     = require"render"
 local Square     = require"square"
 local Command    = require"command"
 local Background = require"background"
 local screen     = require"screen"
 local input      = require"input"
+local Text       = require"text"
 local specialChars = require"specialChars"
 input:registerStr("",function()return true end)
 while true do
@@ -15,9 +16,10 @@ while true do
 	end
 	atScreen:start{
 		shapes = {
-			Square  = Square,
-			Command = Command,
-			Background = Background
+			Square     = Square,
+			Command    = Command,
+			Background = Background,
+			Text       = Text
 		},
 		chars = specialChars,
 		input = input,

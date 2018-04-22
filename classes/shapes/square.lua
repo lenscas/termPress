@@ -6,7 +6,7 @@ function Square:new(o)
 	self.__index = self
 	return o
 end
-function Square:render()
+function Square:render(render)
 	local term = self.getTerm()
 	local line = {}
 	for i = 1, self.sizeX do
@@ -18,7 +18,7 @@ function Square:render()
 	end
 	for j = self.y,(self.y +  self.sizeY) do
 		term.cursor.jump(j,self.x)
-		io.write(line)
+		render:write(line)
 	end
 end
 return Square

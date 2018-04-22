@@ -7,7 +7,7 @@ function screen:start(apis)
 		color = "black",
 	}
 	apis.render:addShape(background)
-	local text = apis.shapes.Command:new{
+	local title = apis.shapes.Command:new{
 		z = 9,
 		x = 50,
 		y = 5,
@@ -16,6 +16,20 @@ function screen:start(apis)
 		command = "echo Inleiding | toilet",
 
 	}
+	local text = apis.shapes.Text:new{
+		z = 9,
+		x = 50,
+		y = 15,
+		transparent = true,
+		color = "green",
+		text =
+[[
+* punt 1
+* punt 2
+* punt 3
+]]
+	}
+	apis.render:addShape(title)
 	apis.render:addShape(text)
 
 end

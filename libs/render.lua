@@ -5,7 +5,9 @@ return {
 	addShape = function(self,shape)
 		if objects then
 			local place, node = objects:insertCompare(
-				function(node) return node.val.z < shape.z end,
+				function(node)
+					return node.val.z < shape.z
+				end,
 				shape
 			)
 			if place == 1 then
